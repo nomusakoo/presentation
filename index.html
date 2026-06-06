@@ -1757,7 +1757,30 @@
   <div class="nav-dots" id="dots"></div>
   <div class="slide-counter" id="counter">1 / 12</div>
   <button onclick="changeSlide(1)">&#8594;</button>
+  <button onclick="toggleFullscreen()" id="fs-btn" title="전체화면 (F11)">⛶</button>
 </div>
+
+<script>
+  function toggleFullscreen() {
+    const btn = document.getElementById('fs-btn');
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(() => {});
+      btn.textContent = '✕';
+      btn.title = '전체화면 나가기 (ESC)';
+    } else {
+      document.exitFullscreen();
+      btn.textContent = '⛶';
+      btn.title = '전체화면 (F11)';
+    }
+  }
+  document.addEventListener('fullscreenchange', () => {
+    const btn = document.getElementById('fs-btn');
+    if (!document.fullscreenElement) {
+      btn.textContent = '⛶';
+      btn.title = '전체화면 (F11)';
+    }
+  });
+</script>
 
 <script>
   const slides = document.querySelectorAll('.slide');
