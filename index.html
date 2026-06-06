@@ -916,6 +916,104 @@
     font-size: 12px; color: rgba(255,255,255,0.65); letter-spacing: 1px;
     font-style: italic;
   }
+
+  /* ══════════════════════════════════
+     ANIMATION SYSTEM
+  ══════════════════════════════════ */
+
+  /* 기본 애니메이션 키프레임 */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeLeft {
+    from { opacity: 0; transform: translateX(-32px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes fadeRight {
+    from { opacity: 0; transform: translateX(32px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.88); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes countUp {
+    from { opacity: 0; transform: scale(0.5); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes underlineGrow {
+    from { width: 0; }
+    to   { width: 100%; }
+  }
+  @keyframes barGrowAnim {
+    from { width: 0 !important; }
+  }
+  @keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(82,183,136,0); }
+    50%       { box-shadow: 0 0 0 8px rgba(82,183,136,0.18); }
+  }
+  @keyframes borderFlash {
+    0%   { border-color: transparent; }
+    40%  { border-color: var(--gold); }
+    100% { border-color: rgba(201,168,76,0.3); }
+  }
+
+  /* 애니메이션 대기 상태 — slide가 비활성일 때 숨김 */
+  .anim-ready {
+    opacity: 0;
+    animation: none;
+  }
+  /* 활성화 시 애니메이션 실행 */
+  .anim-run {
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+    animation-duration: 0.55s;
+  }
+
+  /* 강조 언더라인 */
+  .highlight-word {
+    position: relative;
+    display: inline-block;
+  }
+  .highlight-word::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    height: 3px;
+    background: var(--gold);
+    width: 0;
+    border-radius: 2px;
+    transition: none;
+  }
+  .highlight-word.underline-run::after {
+    animation: underlineGrow 0.5s cubic-bezier(0.22,0.61,0.36,1) forwards;
+  }
+
+  /* 카운트업 숫자 */
+  .countup-num { display: inline-block; }
+
+  /* 바 차트 애니메이션 재정의 */
+  .s6-bar-fill, .s11-criterion-bar, .s11-bar-inner {
+    width: 0 !important;
+    transition: width 1s cubic-bezier(0.22,0.61,0.36,1);
+  }
+  .bar-anim-ready { width: 0 !important; }
+
+  /* CPM 사이클 아이템 */
+  .cpm-step { opacity: 0; }
+  .cpm-arrow { opacity: 0; }
+
+  /* S7 패널 초기 상태 */
+  .s7-panel { opacity: 0; }
+
+  /* S9 right 초기 상태 */
+  .s9-right { opacity: 0; }
+  .s9-bos-row:not(.header) { opacity: 0; }
 </style>
 </head>
 <body>
@@ -925,64 +1023,64 @@
 <!-- ── SLIDE 1 ── -->
 <div class="slide active" id="s1">
   <div class="s1-left">
-    <div class="s1-tag">건국대학교 MBA · 인적자원관리</div>
-    <div class="s1-title">조직 공정성 제고를 통한<br>직군 간 갈등 해소 및<br>노사 신뢰 구축 방안</div>
-    <div class="s1-sub">NH농우바이오 성과관리 시스템을 중심으로</div>
+    <div class="s1-tag anim-ready" data-anim="fadeLeft" data-delay="0">건국대학교 MBA · 인적자원관리</div>
+    <div class="s1-title anim-ready" data-anim="fadeLeft" data-delay="120">조직 공정성 제고를 통한<br>직군 간 갈등 해소 및<br>노사 신뢰 구축 방안</div>
+    <div class="s1-sub anim-ready" data-anim="fadeLeft" data-delay="240">NH농우바이오 성과관리 시스템을 중심으로</div>
     <div class="s1-meta">
-      <div class="s1-meta-item">발표자: 구우회</div>
-      <div class="s1-meta-item">과목: 인적자원관리</div>
-      <div class="s1-meta-item">소속: NH농우바이오 인사노무팀</div>
+      <div class="s1-meta-item anim-ready" data-anim="fadeLeft" data-delay="360">발표자: 구우회</div>
+      <div class="s1-meta-item anim-ready" data-anim="fadeLeft" data-delay="430">과목: 인적자원관리</div>
+      <div class="s1-meta-item anim-ready" data-anim="fadeLeft" data-delay="500">소속: NH농우바이오 인사노무팀</div>
     </div>
   </div>
   <div class="s1-right">
-    <div class="s1-pill">
+    <div class="s1-pill anim-ready" data-anim="fadeRight" data-delay="150">
       <div class="s1-pill-num">ISSUE</div>
       <div class="s1-pill-text">직군 간 성과평가 기준 불만 및 수용성 저하</div>
     </div>
-    <div class="s1-pill">
+    <div class="s1-pill anim-ready" data-anim="fadeRight" data-delay="270">
       <div class="s1-pill-num">THEORY</div>
       <div class="s1-pill-text">형평이론 + 조직공정성 3요소 프레임워크</div>
     </div>
-    <div class="s1-pill">
+    <div class="s1-pill anim-ready" data-anim="fadeRight" data-delay="390">
       <div class="s1-pill-num">SOLUTION</div>
       <div class="s1-pill-text">절차·상호작용·분배 공정성 확보를 위한 HR 액션 플랜</div>
     </div>
-    <div class="s1-pill">
+    <div class="s1-pill anim-ready" data-anim="fadeRight" data-delay="510">
       <div class="s1-pill-num">OUTCOME</div>
       <div class="s1-pill-text">노사 신뢰 회복 + 조직 몰입도 향상 + 이직률 감소</div>
     </div>
-    <div class="s1-logo">NH NONGWOO BIO</div>
+    <div class="s1-logo anim-ready" data-anim="fadeUp" data-delay="650">NH NONGWOO BIO</div>
   </div>
 </div>
 
 <!-- ── SLIDE 2 ── -->
 <div class="slide" id="s2">
-  <div class="s2-header">
+  <div class="s2-header anim-ready" data-anim="slideDown" data-delay="0">
     <div class="section-label">Table of Contents</div>
     <div class="slide-heading">발표 목차</div>
   </div>
   <div class="toc-grid">
-    <div class="toc-card">
+    <div class="toc-card anim-ready" data-anim="fadeUp" data-delay="150">
       <div class="toc-num">1</div>
       <div class="toc-title">서론</div>
       <div class="toc-sub">문제 제기 및<br>현상 파악</div>
     </div>
-    <div class="toc-card">
+    <div class="toc-card anim-ready" data-anim="fadeUp" data-delay="250">
       <div class="toc-num">2</div>
       <div class="toc-title">이론적 배경</div>
       <div class="toc-sub">공정성과 동기부여의<br>메커니즘</div>
     </div>
-    <div class="toc-card">
+    <div class="toc-card anim-ready" data-anim="fadeUp" data-delay="350">
       <div class="toc-num">3</div>
       <div class="toc-title">한계점 분석</div>
       <div class="toc-sub">현행 성과관리<br>시스템의 문제</div>
     </div>
-    <div class="toc-card">
+    <div class="toc-card anim-ready" data-anim="fadeUp" data-delay="450">
       <div class="toc-num">4</div>
       <div class="toc-title">개선 방안</div>
       <div class="toc-sub">전략적 HR<br>액션 플랜</div>
     </div>
-    <div class="toc-card">
+    <div class="toc-card anim-ready" data-anim="fadeUp" data-delay="550">
       <div class="toc-num">5</div>
       <div class="toc-title">결론</div>
       <div class="toc-sub">기대 효과 및<br>시사점</div>
@@ -992,23 +1090,23 @@
 
 <!-- ── SLIDE 3 ── -->
 <div class="slide" id="s3">
-  <div class="section-label">01 · 서론</div>
-  <div class="slide-heading" style="color:var(--cream)">현상 진단: 무엇이 문제인가?</div>
-  <div class="s3-desc">익명 커뮤니티(블라인드 등)를 통해 수면 위로 드러난 조직 내부의 갈등 구조</div>
+  <div class="section-label anim-ready" data-anim="fadeLeft" data-delay="0">01 · 서론</div>
+  <div class="slide-heading anim-ready" data-anim="fadeLeft" data-delay="80" style="color:var(--cream)">현상 진단: 무엇이 문제인가?</div>
+  <div class="s3-desc anim-ready" data-anim="fadeLeft" data-delay="160">익명 커뮤니티(블라인드 등)를 통해 수면 위로 드러난 조직 내부의 갈등 구조</div>
   <div class="s3-grid">
-    <div class="s3-card red">
+    <div class="s3-card red anim-ready" data-anim="fadeUp" data-delay="260">
       <div class="s3-card-icon">📊</div>
       <div class="s3-card-title">영업직 vs 비영업직 — 성과급 형평성 논란</div>
       <div class="s3-card-body">영업직은 매출이라는 객관적 지표로 높은 성과급을 수령. 비영업직 구성원들은 동등한 노력에도 불구하고 보상에서 체계적으로 불이익을 받는다고 인식.</div>
       <div class="s3-card-quote">"영업만 성과급 받냐. 우리 지원 없으면 영업도 못 함."</div>
     </div>
-    <div class="s3-card gold">
+    <div class="s3-card gold anim-ready" data-anim="fadeUp" data-delay="360">
       <div class="s3-card-icon">🔬</div>
       <div class="s3-card-title">연구직 vs 비연구직 — 평가 기준 불투명성</div>
       <div class="s3-card-body">연구직의 성과는 수년에 걸친 장기 프로젝트로, 단기 평가 사이클에서 제대로 측정되지 않음. 반면 비연구 지원 업무는 더욱 주관적 평가에 노출.</div>
       <div class="s3-card-quote">"연구직 평가는 상사 눈치 보기가 전부."</div>
     </div>
-    <div class="s3-card green">
+    <div class="s3-card green anim-ready" data-anim="fadeUp" data-delay="460">
       <div class="s3-card-icon">📋</div>
       <div class="s3-card-title">성과평가 5대 기준 관점에서의 진단</div>
       <div class="s3-card-body">
@@ -1018,16 +1116,16 @@
         <span style="color:var(--red-soft);font-weight:600">⚠ 실용성(Practicality)</span> — 직군별 특성 반영 미흡
       </div>
     </div>
-    <div class="s3-card blue">
+    <div class="s3-card blue anim-ready" data-anim="fadeUp" data-delay="560">
       <div class="s3-card-icon">⚡</div>
       <div class="s3-card-title">갈등이 조직에 미치는 영향</div>
       <div class="s3-card-body">표면적 불만 → 내부 갈등 심화 → 협력 저하 → 우수 인재 이탈. 블라인드 등 외부 채널을 통한 불만 표출은 단순 개인 감정이 아닌 <strong style="color:white">구조적 공정성 위기</strong>의 신호.</div>
     </div>
   </div>
-  <div class="s3-bottom">
+  <div class="s3-bottom anim-ready" data-anim="fadeUp" data-delay="700">
     <div class="s3-bottom-icon">🎯</div>
     <div class="s3-bottom-text">
-      <strong>핵심 문제:</strong> 성과평가의 <strong>수용성(Acceptability) 부족</strong> —
+      <strong>핵심 문제:</strong> 성과평가의 <strong class="highlight-word">수용성(Acceptability) 부족</strong> —
       구성원들이 평가 기준과 결과를 공정하다고 받아들이지 못하는 상태.
       이것이 모든 갈등의 근본 원인.
     </div>
@@ -1037,10 +1135,10 @@
 <!-- ── SLIDE 4 ── -->
 <div class="slide" id="s4">
   <div class="s4-left">
-    <div class="section-label">02 · 이론적 배경</div>
-    <div class="slide-heading">형평이론<br>(Equity Theory)</div>
-    <div class="s4-theory-name">Adams, 1963</div>
-    <div class="s4-formula">
+    <div class="section-label anim-ready" data-anim="fadeLeft" data-delay="0">02 · 이론적 배경</div>
+    <div class="slide-heading anim-ready" data-anim="fadeLeft" data-delay="100">형평이론<br>(Equity Theory)</div>
+    <div class="s4-theory-name anim-ready" data-anim="fadeLeft" data-delay="180">Adams, 1963</div>
+    <div class="s4-formula anim-ready" data-anim="scaleIn" data-delay="300">
       <div class="s4-formula-label">EQUITY FORMULA</div>
       <div class="s4-formula-eq">
         <div class="frac">
@@ -1054,7 +1152,7 @@
         </div>
       </div>
     </div>
-    <div class="s4-key-point">
+    <div class="s4-key-point anim-ready" data-anim="fadeLeft" data-delay="480">
       구성원은 자신의 투입 대비 산출 비율을<br>
       준거 인물(타 직군)과 비교하여<br>
       공정성 여부를 <strong style="color:var(--green-light)">주관적으로 판단</strong>함.<br><br>
@@ -1063,7 +1161,7 @@
   </div>
   <div class="s4-right">
     <div class="s4-compare">
-      <div class="s4-compare-card visible">
+      <div class="s4-compare-card visible anim-ready" data-anim="fadeRight" data-delay="200">
         <div class="s4-compare-tag">✅ VISIBLE</div>
         <div class="s4-compare-title">영업직 성과</div>
         <div class="s4-compare-items">
@@ -1073,7 +1171,7 @@
           • 고객 증가 수
         </div>
       </div>
-      <div class="s4-compare-card invisible">
+      <div class="s4-compare-card invisible anim-ready" data-anim="fadeRight" data-delay="320">
         <div class="s4-compare-tag">❌ INVISIBLE</div>
         <div class="s4-compare-title">연구·지원직 성과</div>
         <div class="s4-compare-items">
@@ -1084,34 +1182,34 @@
         </div>
       </div>
     </div>
-    <div class="s4-flow">
-      <div class="s4-flow-step">
+    <div class="s4-flow anim-ready" data-anim="fadeUp" data-delay="460" id="s4-flow">
+      <div class="s4-flow-step" data-flow-step="0">
         <div class="s4-flow-label">STEP 1</div>
         <div class="s4-flow-text">비교 시작<br><small style="font-weight:400;color:#888">"타 직군은?"</small></div>
       </div>
-      <div class="s4-flow-step">
+      <div class="s4-flow-step" data-flow-step="1">
         <div class="s4-flow-label">STEP 2</div>
         <div class="s4-flow-text">불균형 지각<br><small style="font-weight:400;color:#888">비율 불일치</small></div>
       </div>
-      <div class="s4-flow-step">
+      <div class="s4-flow-step" data-flow-step="2">
         <div class="s4-flow-label">STEP 3</div>
         <div class="s4-flow-text">불공정성<br><small style="font-weight:400;color:#888">긴장감 발생</small></div>
       </div>
-      <div class="s4-flow-step">
+      <div class="s4-flow-step" data-flow-step="3">
         <div class="s4-flow-label">STEP 4</div>
         <div class="s4-flow-text">긴장 해소<br><small style="font-weight:400;color:#888">행동 변화</small></div>
       </div>
     </div>
     <div class="s4-outcomes">
-      <div class="s4-outcome">
+      <div class="s4-outcome anim-ready" data-anim="fadeUp" data-delay="620">
         <div class="s4-outcome-icon">📉</div>
         <div class="s4-outcome-text">동기 저하<br>노력 감소</div>
       </div>
-      <div class="s4-outcome">
+      <div class="s4-outcome anim-ready" data-anim="fadeUp" data-delay="720">
         <div class="s4-outcome-icon">🚪</div>
         <div class="s4-outcome-text">이탈 의도<br>이직 고려</div>
       </div>
-      <div class="s4-outcome">
+      <div class="s4-outcome anim-ready" data-anim="fadeUp" data-delay="820">
         <div class="s4-outcome-icon">💥</div>
         <div class="s4-outcome-text">직군 간<br>갈등 표면화</div>
       </div>
@@ -1121,13 +1219,13 @@
 
 <!-- ── SLIDE 5 ── -->
 <div class="slide" id="s5">
-  <div style="text-align:center">
+  <div style="text-align:center" class="anim-ready" data-anim="slideDown" data-delay="0">
     <div class="section-label">02 · 이론적 배경</div>
     <div class="slide-heading">조직공정성 이론 — 3가지 핵심 차원</div>
   </div>
-  <div class="s5-subtitle">오늘 개선 방안의 뼈대가 되는 이론 프레임워크 · Greenberg, 1987</div>
+  <div class="s5-subtitle anim-ready" data-anim="fadeUp" data-delay="100">오늘 개선 방안의 뼈대가 되는 이론 프레임워크 · Greenberg, 1987</div>
   <div class="s5-cards">
-    <div class="s5-card dist">
+    <div class="s5-card dist anim-ready" data-anim="fadeUp" data-delay="220">
       <div class="s5-card-en">Distributive Justice</div>
       <div class="s5-card-kr">분배 공정성</div>
       <div class="s5-card-icon">⚖️</div>
@@ -1138,7 +1236,7 @@
         <div class="s5-card-item">내적 형평성(Internal Equity) 확보</div>
       </div>
     </div>
-    <div class="s5-card proc">
+    <div class="s5-card proc anim-ready" data-anim="fadeUp" data-delay="370">
       <div class="s5-card-en">Procedural Justice</div>
       <div class="s5-card-kr">절차 공정성</div>
       <div class="s5-card-icon">📋</div>
@@ -1149,7 +1247,7 @@
         <div class="s5-card-item">이의제기 채널 보장</div>
       </div>
     </div>
-    <div class="s5-card inter">
+    <div class="s5-card inter anim-ready" data-anim="fadeUp" data-delay="520">
       <div class="s5-card-en">Interactional Justice</div>
       <div class="s5-card-kr">상호작용 공정성</div>
       <div class="s5-card-icon">💬</div>
@@ -1161,10 +1259,10 @@
       </div>
     </div>
   </div>
-  <div class="s5-bottom">
+  <div class="s5-bottom anim-ready" data-anim="fadeUp" data-delay="680">
     <div style="font-size:22px">💡</div>
     <div class="s5-bottom-insight">
-      핵심 인사이트: 연구에 따르면 <strong>결과가 불만족스럽더라도, 절차와 상호작용이 공정하면 수용도가 현저히 높아짐</strong>.
+      핵심 인사이트: 연구에 따르면 <strong>결과가 불만족스럽더라도, <span class="highlight-word">절차와 상호작용이 공정하면</span> 수용도가 현저히 높아짐</strong>.
       즉, 과정의 공정성이 결과의 충격을 완화한다. 이것이 오늘 전략의 출발점.
     </div>
   </div>
@@ -1173,31 +1271,31 @@
 <!-- ── SLIDE 6 ── -->
 <div class="slide" id="s6">
   <div class="s6-left">
-    <div class="section-label">03 · 한계점 분석</div>
-    <div class="slide-heading">평가 도구의 타당성(Validity) 불균형</div>
-    <div class="s6-left-body">
+    <div class="section-label anim-ready" data-anim="fadeLeft" data-delay="0">03 · 한계점 분석</div>
+    <div class="slide-heading anim-ready" data-anim="fadeLeft" data-delay="100">평가 도구의 타당성(Validity) 불균형</div>
+    <div class="s6-left-body anim-ready" data-anim="fadeLeft" data-delay="200">
       직군에 따라 적용 가능한 평가 방법론이 다름에도 불구하고, 동일한 평가 체계가 획일적으로 적용되면서 타당성의 심각한 불균형이 발생.
     </div>
-    <div class="s6-validity-meter">
+    <div class="s6-validity-meter anim-ready" data-anim="scaleIn" data-delay="340">
       <div class="s6-validity-label">직군별 평가 객관성 수준</div>
       <div class="s6-bar-row">
         <div class="s6-bar-label"><span>영업직</span><span>높음</span></div>
-        <div class="s6-bar-track"><div class="s6-bar-fill" style="width:88%;background:var(--green-light)"></div></div>
+        <div class="s6-bar-track"><div class="s6-bar-fill" data-bar-width="88%" style="background:var(--green-light)"></div></div>
       </div>
       <div class="s6-bar-row">
         <div class="s6-bar-label"><span>연구직</span><span>중간</span></div>
-        <div class="s6-bar-track"><div class="s6-bar-fill" style="width:52%;background:var(--gold)"></div></div>
+        <div class="s6-bar-track"><div class="s6-bar-fill" data-bar-width="52%" style="background:var(--gold)"></div></div>
       </div>
       <div class="s6-bar-row">
         <div class="s6-bar-label"><span>지원직</span><span>낮음</span></div>
-        <div class="s6-bar-track"><div class="s6-bar-fill" style="width:28%;background:var(--red-soft)"></div></div>
+        <div class="s6-bar-track"><div class="s6-bar-fill" data-bar-width="28%" style="background:var(--red-soft)"></div></div>
       </div>
     </div>
   </div>
   <div class="s6-right">
-    <div class="s6-table-header">직군별 평가 방법론 비교 분석</div>
+    <div class="s6-table-header anim-ready" data-anim="fadeRight" data-delay="150">직군별 평가 방법론 비교 분석</div>
     <div class="s6-comparison">
-      <div class="s6-col">
+      <div class="s6-col anim-ready" data-anim="fadeRight" data-delay="280">
         <div class="s6-col-header green-h">
           <div class="s6-col-title">영업직</div>
           <div class="s6-col-subtitle">Results Approach</div>
@@ -1215,7 +1313,7 @@
           <div class="s6-item-body">구성원이 결과를 예측·납득하기 쉬운 구조</div>
         </div>
       </div>
-      <div class="s6-col">
+      <div class="s6-col anim-ready" data-anim="fadeRight" data-delay="420">
         <div class="s6-col-header red-h">
           <div class="s6-col-title">연구직·지원직</div>
           <div class="s6-col-subtitle">Trait / Behavioral Approach</div>
@@ -1285,27 +1383,27 @@
       </div>
     </div>
   </div>
-  <div class="s7-pain-summary">
+  <div class="s7-pain-summary anim-ready" data-anim="fadeUp" data-delay="600">
     <div class="s7-pain-stat">
-      <div class="s7-pain-num">3</div>
+      <div class="s7-pain-num countup-num" data-target="3">0</div>
       <div class="s7-pain-label">핵심 Pain<br>Points</div>
     </div>
     <div class="s7-pain-divider"></div>
     <div class="s7-pain-text">
-      <strong>타당성 불균형</strong> + <strong>내적 형평성 훼손</strong> + <strong>소통 부재</strong>의 3중 구조적 문제가 복합적으로 작용하면서 구성원의 불만이 누적됨. 어느 하나만 해결해서는 근본적 개선이 불가능하며, <strong style="color:var(--gold)">3가지 공정성 축에서의 동시 접근</strong>이 필요.
+      <strong>타당성 불균형</strong> + <strong>내적 형평성 훼손</strong> + <strong>소통 부재</strong>의 3중 구조적 문제가 복합적으로 작용하면서 구성원의 불만이 누적됨. 어느 하나만 해결해서는 근본적 개선이 불가능하며, <strong style="color:var(--gold)"><span class="highlight-word">3가지 공정성 축에서의 동시 접근</span></strong>이 필요.
     </div>
   </div>
 </div>
 
 <!-- ── SLIDE 8 ── -->
 <div class="slide" id="s8">
-  <div style="text-align:center">
+  <div style="text-align:center" class="anim-ready" data-anim="slideDown" data-delay="0">
     <div class="section-label">04 · 전략적 개선 방안</div>
     <div class="slide-heading">3가지 공정성 축에 대응하는 HR 액션 플랜</div>
   </div>
-  <div class="s8-subtitle">조직공정성 이론의 3요소를 각각의 개선 방안과 1:1 매핑</div>
+  <div class="s8-subtitle anim-ready" data-anim="fadeUp" data-delay="120">조직공정성 이론의 3요소를 각각의 개선 방안과 1:1 매핑</div>
   <div class="s8-arrows">
-    <div class="s8-step s1c">
+    <div class="s8-step s1c anim-ready" data-anim="fadeLeft" data-delay="260">
       <div class="s8-step-tag">절차 공정성</div>
       <div class="s8-step-title">직군별 맞춤<br>평가 도구 재설계</div>
       <div class="s8-step-items">
@@ -1314,7 +1412,7 @@
         <div class="s8-step-item">일관성·합리성 확보</div>
       </div>
     </div>
-    <div class="s8-step s2c">
+    <div class="s8-step s2c anim-ready" data-anim="fadeUp" data-delay="440">
       <div class="s8-step-tag">상호작용 공정성</div>
       <div class="s8-step-title">수시 성과관리<br>(CPM) 도입</div>
       <div class="s8-step-items">
@@ -1323,7 +1421,7 @@
         <div class="s8-step-item">목표 공유 투명화</div>
       </div>
     </div>
-    <div class="s8-step s3c">
+    <div class="s8-step s3c anim-ready" data-anim="fadeRight" data-delay="620">
       <div class="s8-step-tag">분배 공정성</div>
       <div class="s8-step-title">직무 가치 반영<br>보상 구조 개편</div>
       <div class="s8-step-items">
@@ -1334,21 +1432,21 @@
     </div>
   </div>
   <div class="s8-bottom">
-    <div class="s8-outcome-card">
+    <div class="s8-outcome-card anim-ready" data-anim="fadeUp" data-delay="800">
       <div class="s8-outcome-icon">🤝</div>
       <div>
         <div class="s8-outcome-title">노사 신뢰 회복</div>
         <div class="s8-outcome-body">공정한 절차와 투명한 소통을 통해 노동조합 및 구성원과의 신뢰 관계 회복</div>
       </div>
     </div>
-    <div class="s8-outcome-card">
+    <div class="s8-outcome-card anim-ready" data-anim="fadeUp" data-delay="920">
       <div class="s8-outcome-icon">🏆</div>
       <div>
         <div class="s8-outcome-title">고성과자 리텐션</div>
         <div class="s8-outcome-body">합리적 평가와 보상으로 우수 인재의 내재적·외재적 동기 모두 충족</div>
       </div>
     </div>
-    <div class="s8-outcome-card">
+    <div class="s8-outcome-card anim-ready" data-anim="fadeUp" data-delay="1040">
       <div class="s8-outcome-icon">📈</div>
       <div>
         <div class="s8-outcome-title">조직 몰입도 향상</div>
@@ -1361,11 +1459,11 @@
 <!-- ── SLIDE 9 ── -->
 <div class="slide" id="s9">
   <div class="s9-left">
-    <div class="section-label">04-① 절차 공정성</div>
-    <div class="slide-heading">직군별 맞춤 평가 도구 재설계</div>
-    <div class="s9-left-sub">구성원이 함께 만드는 기준 → 수용성의 원천</div>
+    <div class="section-label anim-ready" data-anim="fadeLeft" data-delay="0">04-① 절차 공정성</div>
+    <div class="slide-heading anim-ready" data-anim="fadeLeft" data-delay="100">직군별 맞춤 평가 도구 재설계</div>
+    <div class="s9-left-sub anim-ready" data-anim="fadeLeft" data-delay="180">구성원이 함께 만드는 기준 → 수용성의 원천</div>
     <div class="s9-roadmap">
-      <div class="s9-road-item">
+      <div class="s9-road-item anim-ready" data-anim="fadeLeft" data-delay="300">
         <div class="s9-road-left">
           <div class="s9-road-dot">1</div>
           <div class="s9-road-line"></div>
@@ -1375,7 +1473,7 @@
           <div class="s9-road-body">각 직군의 핵심 업무, 역량, 기대 성과를 체계적으로 분석하여 평가 기반 마련</div>
         </div>
       </div>
-      <div class="s9-road-item">
+      <div class="s9-road-item anim-ready" data-anim="fadeLeft" data-delay="440">
         <div class="s9-road-left">
           <div class="s9-road-dot">2</div>
           <div class="s9-road-line"></div>
@@ -1385,7 +1483,7 @@
           <div class="s9-road-body">평가 기준 개발 단계부터 구성원 대표 참여 → 절차 정당성 확보</div>
         </div>
       </div>
-      <div class="s9-road-item">
+      <div class="s9-road-item anim-ready" data-anim="fadeLeft" data-delay="580">
         <div class="s9-road-left">
           <div class="s9-road-dot">3</div>
           <div class="s9-road-line"></div>
@@ -1395,7 +1493,7 @@
           <div class="s9-road-body">연구직·지원직 대상 행위관찰척도(BOS) 도입으로 주관적 평가 최소화</div>
         </div>
       </div>
-      <div class="s9-road-item">
+      <div class="s9-road-item anim-ready" data-anim="fadeLeft" data-delay="720">
         <div class="s9-road-left">
           <div class="s9-road-dot">4</div>
         </div>
@@ -1456,11 +1554,11 @@
 
 <!-- ── SLIDE 10 ── -->
 <div class="slide" id="s10">
-  <div class="section-label">04-② 상호작용 공정성</div>
-  <div class="slide-heading" style="color:var(--cream)">수시 성과관리(CPM) 도입: 평가에서 대화로</div>
-  <div class="s10-sub">연 1~2회 일방향 평가 → 상시 양방향 코칭 문화로의 패러다임 전환</div>
+  <div class="section-label anim-ready" data-anim="slideDown" data-delay="0">04-② 상호작용 공정성</div>
+  <div class="slide-heading anim-ready" data-anim="fadeLeft" data-delay="80" style="color:var(--cream)">수시 성과관리(CPM) 도입: 평가에서 대화로</div>
+  <div class="s10-sub anim-ready" data-anim="fadeLeft" data-delay="160">연 1~2회 일방향 평가 → 상시 양방향 코칭 문화로의 패러다임 전환</div>
   <div class="s10-main">
-    <div class="s10-before">
+    <div class="s10-before anim-ready" data-anim="fadeLeft" data-delay="280">
       <div class="s10-badge">❌ AS-IS · 현행</div>
       <div class="s10-panel-title">평가를 위한 평가</div>
       <div class="s10-items">
@@ -1471,7 +1569,7 @@
         <div class="s10-item"><div class="s10-item-icon">📊</div><div>과거 성과 기록 중심, 미래 성장 방향 논의 없음</div></div>
       </div>
     </div>
-    <div class="s10-after">
+    <div class="s10-after anim-ready" data-anim="fadeRight" data-delay="420">
       <div class="s10-badge">✅ TO-BE · 개선</div>
       <div class="s10-panel-title">성장을 위한 코칭 대화</div>
       <div class="s10-items">
@@ -1482,33 +1580,33 @@
         <div class="s10-item"><div class="s10-item-icon">🧭</div><div>강점·개발 영역 중심 미래지향적 대화</div></div>
       </div>
     </div>
-    <div class="s10-cpm-cycle">
-      <div class="cpm-step">
+    <div class="s10-cpm-cycle" id="cpm-cycle">
+      <div class="cpm-step" data-cpm-idx="0">
         <div class="cpm-circle">🎯</div>
         <div class="cpm-label">목표 설정<br>Goal Setting</div>
       </div>
-      <div class="cpm-arrow">→</div>
-      <div class="cpm-step">
+      <div class="cpm-arrow" data-cpm-idx="0">→</div>
+      <div class="cpm-step" data-cpm-idx="1">
         <div class="cpm-circle">📊</div>
         <div class="cpm-label">진행 모니터링<br>Check-in</div>
       </div>
-      <div class="cpm-arrow">→</div>
-      <div class="cpm-step">
+      <div class="cpm-arrow" data-cpm-idx="1">→</div>
+      <div class="cpm-step" data-cpm-idx="2">
         <div class="cpm-circle">💬</div>
         <div class="cpm-label">수시 피드백<br>Coaching</div>
       </div>
-      <div class="cpm-arrow">→</div>
-      <div class="cpm-step">
+      <div class="cpm-arrow" data-cpm-idx="2">→</div>
+      <div class="cpm-step" data-cpm-idx="3">
         <div class="cpm-circle">📝</div>
         <div class="cpm-label">성과 인정<br>Recognition</div>
       </div>
-      <div class="cpm-arrow">→</div>
-      <div class="cpm-step">
+      <div class="cpm-arrow" data-cpm-idx="3">→</div>
+      <div class="cpm-step" data-cpm-idx="4">
         <div class="cpm-circle">🌱</div>
         <div class="cpm-label">개발 계획<br>Development</div>
       </div>
-      <div class="cpm-arrow">↩</div>
-      <div class="cpm-step">
+      <div class="cpm-arrow" data-cpm-idx="4">↩</div>
+      <div class="cpm-step" data-cpm-idx="5">
         <div class="cpm-circle">🔄</div>
         <div class="cpm-label">다음 주기<br>Next Cycle</div>
       </div>
@@ -1518,31 +1616,31 @@
 
 <!-- ── SLIDE 11 ── -->
 <div class="slide" id="s11">
-  <div class="section-label">04-③ 분배 공정성</div>
-  <div class="slide-heading">직무 가치 반영 보상 구조 재설계</div>
-  <div class="s11-sub">직무평가(Job Evaluation)를 통한 내적 형평성(Internal Equity) 확보</div>
+  <div class="section-label anim-ready" data-anim="fadeLeft" data-delay="0">04-③ 분배 공정성</div>
+  <div class="slide-heading anim-ready" data-anim="fadeLeft" data-delay="100">직무 가치 반영 보상 구조 재설계</div>
+  <div class="s11-sub anim-ready" data-anim="fadeLeft" data-delay="180">직무평가(Job Evaluation)를 통한 내적 형평성(Internal Equity) 확보</div>
   <div class="s11-main">
-    <div class="s11-job-eval">
+    <div class="s11-job-eval anim-ready" data-anim="fadeLeft" data-delay="300">
       <div class="s11-panel-title">🔍 직무평가 기준 및 가중치</div>
       <div class="s11-criteria">
         <div class="s11-criterion">
           <div class="s11-criterion-name">직무 복잡성</div>
-          <div class="s11-criterion-bar-track"><div class="s11-criterion-bar" style="width:85%"></div></div>
+          <div class="s11-criterion-bar-track"><div class="s11-criterion-bar" data-bar-width="85%"></div></div>
           <div class="s11-criterion-pct">35%</div>
         </div>
         <div class="s11-criterion">
           <div class="s11-criterion-name">책임감 수준</div>
-          <div class="s11-criterion-bar-track"><div class="s11-criterion-bar" style="width:70%"></div></div>
+          <div class="s11-criterion-bar-track"><div class="s11-criterion-bar" data-bar-width="70%"></div></div>
           <div class="s11-criterion-pct">30%</div>
         </div>
         <div class="s11-criterion">
           <div class="s11-criterion-name">요구 기술·지식</div>
-          <div class="s11-criterion-bar-track"><div class="s11-criterion-bar" style="width:55%"></div></div>
+          <div class="s11-criterion-bar-track"><div class="s11-criterion-bar" data-bar-width="55%"></div></div>
           <div class="s11-criterion-pct">25%</div>
         </div>
         <div class="s11-criterion">
           <div class="s11-criterion-name">작업 환경</div>
-          <div class="s11-criterion-bar-track"><div class="s11-criterion-bar" style="width:25%"></div></div>
+          <div class="s11-criterion-bar-track"><div class="s11-criterion-bar" data-bar-width="25%"></div></div>
           <div class="s11-criterion-pct">10%</div>
         </div>
       </div>
@@ -1559,22 +1657,22 @@
         </div>
       </div>
     </div>
-    <div class="s11-ba">
+    <div class="s11-ba anim-ready" data-anim="fadeRight" data-delay="420">
       <div class="s11-ba-title">📊 보상 구조 Before / After 비교</div>
       <div class="s11-before-section">
         <div class="s11-section-tag">BEFORE — 현행 구조 (직무가치 미반영)</div>
         <div class="s11-bars">
           <div class="s11-bar-row before">
             <div class="s11-bar-name">영업직</div>
-            <div class="s11-bar-outer"><div class="s11-bar-inner" style="width:88%">매출 연동 高</div></div>
+            <div class="s11-bar-outer"><div class="s11-bar-inner" data-bar-width="88%">매출 연동 高</div></div>
           </div>
           <div class="s11-bar-row before">
             <div class="s11-bar-name">연구직</div>
-            <div class="s11-bar-outer"><div class="s11-bar-inner" style="width:52%">직무가치 불반영</div></div>
+            <div class="s11-bar-outer"><div class="s11-bar-inner" data-bar-width="52%">직무가치 불반영</div></div>
           </div>
           <div class="s11-bar-row before">
             <div class="s11-bar-name">지원직</div>
-            <div class="s11-bar-outer"><div class="s11-bar-inner" style="width:38%">평가 기준 모호</div></div>
+            <div class="s11-bar-outer"><div class="s11-bar-inner" data-bar-width="38%">평가 기준 모호</div></div>
           </div>
         </div>
       </div>
@@ -1583,19 +1681,19 @@
         <div class="s11-bars">
           <div class="s11-bar-row after">
             <div class="s11-bar-name">영업직</div>
-            <div class="s11-bar-outer"><div class="s11-bar-inner" style="width:82%">성과 + 직무가치</div></div>
+            <div class="s11-bar-outer"><div class="s11-bar-inner" data-bar-width="82%">성과 + 직무가치</div></div>
           </div>
           <div class="s11-bar-row after">
             <div class="s11-bar-name">연구직</div>
-            <div class="s11-bar-outer"><div class="s11-bar-inner" style="width:75%">전문성 가치 반영</div></div>
+            <div class="s11-bar-outer"><div class="s11-bar-inner" data-bar-width="75%">전문성 가치 반영</div></div>
           </div>
           <div class="s11-bar-row after">
             <div class="s11-bar-name">지원직</div>
-            <div class="s11-bar-outer"><div class="s11-bar-inner" style="width:62%">기여도 합리 반영</div></div>
+            <div class="s11-bar-outer"><div class="s11-bar-inner" data-bar-width="62%">기여도 합리 반영</div></div>
           </div>
         </div>
       </div>
-      <div class="s11-effect">
+      <div class="s11-effect anim-ready" data-anim="fadeUp" data-delay="700">
         <div class="s11-effect-icon">✅</div>
         <div class="s11-effect-text">
           직군 간 격차는 여전히 존재하지만, <strong>이제 그 격차는 합리적 직무 가치 차이에 근거</strong>함.
@@ -1608,11 +1706,11 @@
 
 <!-- ── SLIDE 12 ── -->
 <div class="slide" id="s12">
-  <div class="section-label">05 · 결론</div>
-  <div class="slide-heading">기대 효과 및 시사점</div>
-  <div class="s12-sub">3가지 공정성 확보 → 노사 신뢰 회복 → 조직 성과 향상의 선순환 구조</div>
+  <div class="section-label anim-ready" data-anim="slideDown" data-delay="0">05 · 결론</div>
+  <div class="slide-heading anim-ready" data-anim="slideDown" data-delay="80">기대 효과 및 시사점</div>
+  <div class="s12-sub anim-ready" data-anim="fadeUp" data-delay="160">3가지 공정성 확보 → 노사 신뢰 회복 → 조직 성과 향상의 선순환 구조</div>
   <div class="s12-grid">
-    <div class="s12-card">
+    <div class="s12-card anim-ready" data-anim="scaleIn" data-delay="280">
       <div class="s12-card-icon">🤝</div>
       <div class="s12-card-title">노사관계 개선</div>
       <div class="s12-card-items">
@@ -1621,7 +1719,7 @@
         <div class="s12-card-item">소모적 분쟁 비용 최소화</div>
       </div>
     </div>
-    <div class="s12-card">
+    <div class="s12-card anim-ready" data-anim="scaleIn" data-delay="400">
       <div class="s12-card-icon">🏆</div>
       <div class="s12-card-title">인재 유지·동기 강화</div>
       <div class="s12-card-items">
@@ -1630,7 +1728,7 @@
         <div class="s12-card-item">역기능적 이직 방지 및 핵심 인재 리텐션</div>
       </div>
     </div>
-    <div class="s12-card">
+    <div class="s12-card anim-ready" data-anim="scaleIn" data-delay="520">
       <div class="s12-card-icon">📈</div>
       <div class="s12-card-title">조직 성과 향상</div>
       <div class="s12-card-items">
@@ -1639,7 +1737,7 @@
         <div class="s12-card-item">갈등 에너지의 창의·혁신 에너지로 전환</div>
       </div>
     </div>
-    <div class="s12-card">
+    <div class="s12-card anim-ready" data-anim="scaleIn" data-delay="640">
       <div class="s12-card-icon">🌱</div>
       <div class="s12-card-title">HR 전략적 시사점</div>
       <div class="s12-card-items">
@@ -1649,7 +1747,7 @@
       </div>
     </div>
   </div>
-  <div class="s12-final">
+  <div class="s12-final anim-ready" data-anim="scaleIn" data-delay="820">
     <div class="s12-final-quote">공정한 과정이 공정한 결과를 만든다</div>
     <div class="s12-final-en">Fair Process Creates Fair Outcomes — The Foundation of Organizational Trust</div>
   </div>
@@ -1670,8 +1768,178 @@
   const counter = document.getElementById('counter');
   const dotsContainer = document.getElementById('dots');
   let current = 0;
+  let isAnimating = false;
 
-  // Build dots
+  /* ── 애니메이션 맵 ── */
+  const ANIM_MAP = {
+    fadeUp:    'fadeUp 0.55s cubic-bezier(0.22,0.61,0.36,1) both',
+    fadeLeft:  'fadeLeft 0.55s cubic-bezier(0.22,0.61,0.36,1) both',
+    fadeRight: 'fadeRight 0.55s cubic-bezier(0.22,0.61,0.36,1) both',
+    scaleIn:   'scaleIn 0.55s cubic-bezier(0.22,0.61,0.36,1) both',
+    slideDown: 'slideDown 0.5s cubic-bezier(0.22,0.61,0.36,1) both',
+  };
+
+  /* ── 슬라이드 진입 시 애니메이션 실행 ── */
+  function runSlideAnimations(slideEl) {
+    const slideIdx = Array.from(slides).indexOf(slideEl);
+
+    /* 1. 일반 anim-ready 요소 */
+    slideEl.querySelectorAll('.anim-ready').forEach(el => {
+      const animName = el.dataset.anim || 'fadeUp';
+      const delay = parseInt(el.dataset.delay || '0');
+      el.style.opacity = '0';
+      el.style.animation = 'none';
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          el.style.animation = ANIM_MAP[animName];
+          el.style.animationDelay = delay + 'ms';
+        });
+      });
+    });
+
+    /* 2. 바 차트 애니메이션 (data-bar-width 속성 가진 요소) */
+    slideEl.querySelectorAll('[data-bar-width]').forEach((bar, i) => {
+      const targetW = bar.dataset.barWidth;
+      bar.style.width = '0';
+      bar.style.transition = 'none';
+      const baseDelay = slideIdx === 5 ? 500 : 550; // s6=idx5, s11=idx10
+      setTimeout(() => {
+        bar.style.transition = `width ${0.8 + i * 0.12}s cubic-bezier(0.22,0.61,0.36,1)`;
+        bar.style.width = targetW;
+      }, baseDelay + i * 100);
+    });
+
+    /* 3. 카운트업 숫자 */
+    slideEl.querySelectorAll('.countup-num').forEach(el => {
+      const target = parseInt(el.dataset.target || '0');
+      el.textContent = '0';
+      let start = null;
+      const duration = 800;
+      function step(ts) {
+        if (!start) start = ts;
+        const progress = Math.min((ts - start) / duration, 1);
+        el.textContent = Math.round(progress * target);
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target;
+      }
+      setTimeout(() => requestAnimationFrame(step), 700);
+    });
+
+    /* 4. 하이라이트 언더라인 */
+    slideEl.querySelectorAll('.highlight-word').forEach((el, i) => {
+      el.classList.remove('underline-run');
+      const delay = 800 + i * 200;
+      setTimeout(() => el.classList.add('underline-run'), delay);
+    });
+
+    /* 5. s4 flow step 순차 등장 */
+    if (slideEl.id === 's4') {
+      slideEl.querySelectorAll('[data-flow-step]').forEach(step => {
+        const idx = parseInt(step.dataset.flowStep);
+        step.style.opacity = '0';
+        step.style.transform = 'translateY(10px)';
+        setTimeout(() => {
+          step.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          step.style.opacity = '1';
+          step.style.transform = 'translateY(0)';
+        }, 600 + idx * 140);
+      });
+    }
+
+    /* 6. S10 CPM 사이클 순차 등장 */
+    if (slideEl.id === 's10') {
+      const cpmItems = slideEl.querySelectorAll('[data-cpm-idx]');
+      cpmItems.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'scale(0.8)';
+      });
+      cpmItems.forEach(el => {
+        const idx = parseInt(el.dataset.cpmIdx);
+        const delay = 700 + idx * 120;
+        setTimeout(() => {
+          el.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+          el.style.opacity = '1';
+          el.style.transform = 'scale(1)';
+        }, delay);
+      });
+    }
+
+    /* 7. S7 패널 순차 등장 */
+    if (slideEl.id === 's7') {
+      const panels = slideEl.querySelectorAll('.s7-panel');
+      panels.forEach((p, i) => {
+        p.style.opacity = '0';
+        p.style.transform = i === 0 ? 'translateX(-24px)' : 'translateX(24px)';
+        setTimeout(() => {
+          p.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          p.style.opacity = '1';
+          p.style.transform = 'translateX(0)';
+        }, 200 + i * 160);
+      });
+    }
+
+    /* 8. S9 오른쪽 BOS 테이블 행 순차 등장 */
+    if (slideEl.id === 's9') {
+      const rightEl = slideEl.querySelector('.s9-right');
+      if (rightEl) {
+        rightEl.style.opacity = '0';
+        rightEl.style.transform = 'translateX(28px)';
+        setTimeout(() => {
+          rightEl.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+          rightEl.style.opacity = '1';
+          rightEl.style.transform = 'translateX(0)';
+        }, 350);
+        const rows = rightEl.querySelectorAll('.s9-bos-row:not(.header)');
+        rows.forEach((row, i) => {
+          row.style.opacity = '0';
+          setTimeout(() => {
+            row.style.transition = 'opacity 0.4s ease';
+            row.style.opacity = '1';
+          }, 700 + i * 120);
+        });
+      }
+    }
+  }
+
+  /* ── 슬라이드 리셋 (떠날 때) ── */
+  function resetSlideAnimations(slideEl) {
+    slideEl.querySelectorAll('.anim-ready').forEach(el => {
+      el.style.opacity = '0';
+      el.style.animation = 'none';
+    });
+    slideEl.querySelectorAll('.highlight-word').forEach(el => {
+      el.classList.remove('underline-run');
+    });
+    slideEl.querySelectorAll('[data-bar-width]').forEach(bar => {
+      bar.style.transition = 'none';
+      bar.style.width = '0';
+    });
+    slideEl.querySelectorAll('.countup-num').forEach(el => {
+      el.textContent = '0';
+    });
+    // S4 flow
+    slideEl.querySelectorAll('[data-flow-step]').forEach(s => {
+      s.style.transition = 'none';
+      s.style.opacity = '0';
+    });
+    // S10 CPM
+    slideEl.querySelectorAll('[data-cpm-idx]').forEach(el => {
+      el.style.transition = 'none';
+      el.style.opacity = '0';
+    });
+    // S7 panels
+    slideEl.querySelectorAll('.s7-panel').forEach(p => {
+      p.style.transition = 'none';
+      p.style.opacity = '0';
+    });
+    // S9 right
+    const s9r = slideEl.querySelector('.s9-right');
+    if (s9r) { s9r.style.transition = 'none'; s9r.style.opacity = '0'; }
+    const bosRows = slideEl.querySelectorAll('.s9-bos-row:not(.header)');
+    bosRows.forEach(r => { r.style.opacity = '0'; });
+  }
+
+  /* ── Dots 생성 ── */
   slides.forEach((_, i) => {
     const d = document.createElement('div');
     d.className = 'dot' + (i === 0 ? ' active' : '');
@@ -1679,49 +1947,61 @@
     dotsContainer.appendChild(d);
   });
 
+  /* ── 이동 함수 ── */
   function goTo(n) {
+    if (isAnimating) return;
     const prev = current;
     const next = (n + slides.length) % slides.length;
     if (prev === next) return;
 
+    isAnimating = true;
     const dots = document.querySelectorAll('.dot');
 
     // 현재 슬라이드 페이드 아웃
     slides[prev].style.opacity = '0';
     dots[prev].classList.remove('active');
 
-    // 300ms 후 현재 숨기고 다음 슬라이드 표시
     setTimeout(() => {
+      // 이전 슬라이드 숨기고 리셋
       slides[prev].style.display = 'none';
       slides[prev].classList.remove('active');
+      resetSlideAnimations(slides[prev]);
 
+      // 다음 슬라이드 표시
       current = next;
       slides[current].style.display = 'flex';
       slides[current].classList.add('active');
-      // 브라우저가 display:flex를 렌더링한 뒤 opacity 전환
+
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           slides[current].style.opacity = '1';
+          runSlideAnimations(slides[current]);
+          isAnimating = false;
         });
       });
+
       dots[current].classList.add('active');
       counter.textContent = (current + 1) + ' / ' + slides.length;
-    }, 300);
+    }, 320);
   }
 
   function changeSlide(dir) { goTo(current + dir); }
 
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   changeSlide(-1);
   });
 
-  // Touch/swipe
   let touchX = 0;
   document.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; });
   document.addEventListener('touchend', e => {
     const dx = e.changedTouches[0].clientX - touchX;
     if (Math.abs(dx) > 50) changeSlide(dx < 0 ? 1 : -1);
+  });
+
+  /* ── 첫 슬라이드(S1) 진입 애니메이션 ── */
+  window.addEventListener('load', () => {
+    runSlideAnimations(slides[0]);
   });
 </script>
 </body>
