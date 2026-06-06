@@ -27,13 +27,24 @@
 
   body {
     font-family: 'Noto Sans KR', sans-serif;
-    background: var(--charcoal);
+    background: #000;
     color: var(--charcoal);
     overflow: hidden;
+    width: 100vw; height: 100vh;
+    display: flex; align-items: center; justify-content: center;
   }
 
-  /* ── SLIDE CONTAINER ── */
-  .slideshow { width: 100vw; height: 100vh; position: relative; }
+  /* ── SLIDE CONTAINER ──
+     기준 캔버스(1440×810, 16:9)를 화면 크기에 맞춰 transform:scale 로
+     확대/축소. 모든 내부 요소가 동일 비율로 커지므로 큰 화면에서
+     시인성이 좋아지고 레이아웃은 절대 깨지지 않는다. */
+  .stage {
+    width: 1440px; height: 810px;
+    position: relative;
+    transform-origin: center center;
+    flex-shrink: 0;
+  }
+  .slideshow { width: 100%; height: 100%; position: relative; }
 
   .slide {
     position: absolute; inset: 0;
@@ -47,15 +58,18 @@
 
   /* ── NAV ── */
   .nav {
-    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
-    display: flex; align-items: center; gap: 16px;
-    background: rgba(255,255,255,0.12);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.2);
+    position: fixed; bottom: 24px; right: 28px; left: auto; transform: none;
+    display: flex; align-items: center; gap: 14px;
+    background: rgba(20,20,20,0.55);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.18);
     border-radius: 50px;
-    padding: 10px 20px;
+    padding: 9px 18px;
     z-index: 9999;
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
   }
+  .nav:hover { opacity: 1; }
   .nav button {
     background: none; border: none; cursor: pointer;
     color: white; font-size: 18px; padding: 4px 8px;
@@ -1014,6 +1028,7 @@
 </head>
 <body>
 
+<div class="stage" id="stage">
 <div class="slideshow">
 
 <!-- ── SLIDE 1 ── -->
@@ -1750,6 +1765,7 @@
 </div>
 
 </div><!-- /slideshow -->
+</div><!-- /stage -->
 
 <!-- ── NAV ── -->
 <div class="nav">
@@ -2030,6 +2046,20 @@
   window.addEventListener('load', () => {
     runSlideAnimations(slides[0]);
   });
+
+  /* ── 스테이지 스케일링 ──
+     기준 캔버스(1440×810)를 화면에 맞춰 비율 유지하며 확대.
+     큰 모니터일수록 콘텐츠가 비례해서 커져 시인성이 좋아진다. */
+  const BASE_W = 1440, BASE_H = 810;
+  const stage = document.getElementById('stage');
+  function fitStage() {
+    const sw = window.innerWidth, sh = window.innerHeight;
+    const scale = Math.min(sw / BASE_W, sh / BASE_H);
+    stage.style.transform = 'scale(' + scale + ')';
+  }
+  window.addEventListener('resize', fitStage);
+  fitStage();
+
 </script>
 </body>
 </html>
