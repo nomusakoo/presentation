@@ -485,9 +485,8 @@
   }
   .s6-bar-fill {
     height: 100%; border-radius: 4px;
-    animation: barGrow 1.2s ease forwards;
+    width: 0;
   }
-  @keyframes barGrow { from { width: 0; } }
   .s6-right {
     width: 62%; padding: 48px 52px;
     display: flex; flex-direction: column;
@@ -846,7 +845,7 @@
     height: 100%; border-radius: 6px;
     display: flex; align-items: center; padding-left: 10px;
     font-size: 11px; font-weight: 600; color: white;
-    transition: width 1.5s ease;
+    width: 0;
   }
   .s11-bar-row.before .s11-bar-inner { background: var(--gray-mid); }
   .s11-bar-row.after .s11-bar-inner { background: var(--green-mid); }
@@ -950,9 +949,7 @@
     from { width: 0; }
     to   { width: 100%; }
   }
-  @keyframes barGrowAnim {
-    from { width: 0 !important; }
-  }
+  /* (barGrowAnim 제거 — JS transition으로 대체) *
   @keyframes glowPulse {
     0%, 100% { box-shadow: 0 0 0 0 rgba(82,183,136,0); }
     50%       { box-shadow: 0 0 0 8px rgba(82,183,136,0.18); }
@@ -997,12 +994,11 @@
   /* 카운트업 숫자 */
   .countup-num { display: inline-block; }
 
-  /* 바 차트 애니메이션 재정의 */
+  /* 바 차트 초기값 — JS가 transition으로 제어 */
   .s6-bar-fill, .s11-criterion-bar, .s11-bar-inner {
-    width: 0 !important;
-    transition: width 1s cubic-bezier(0.22,0.61,0.36,1);
+    width: 0;
+    transition: none;
   }
-  .bar-anim-ready { width: 0 !important; }
 
   /* CPM 사이클 아이템 */
   .cpm-step { opacity: 0; }
@@ -1798,15 +1794,23 @@
     });
 
     /* 2. 바 차트 애니메이션 (data-bar-width 속성 가진 요소) */
-    slideEl.querySelectorAll('[data-bar-width]').forEach((bar, i) => {
-      const targetW = bar.dataset.barWidth;
-      bar.style.width = '0';
+    const barEls = slideEl.querySelectorAll('[data-bar-width]');
+    barEls.forEach(bar => {
       bar.style.transition = 'none';
-      const baseDelay = slideIdx === 5 ? 500 : 550; // s6=idx5, s11=idx10
-      setTimeout(() => {
-        bar.style.transition = `width ${0.8 + i * 0.12}s cubic-bezier(0.22,0.61,0.36,1)`;
-        bar.style.width = targetW;
-      }, baseDelay + i * 100);
+      bar.style.width = '0';
+    });
+    // 한 프레임 뒤에 transition + 목표 너비 적용 (레이스 컨디션 방지)
+    const baseBarDelay = slideIdx === 5 ? 420 : 500;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        barEls.forEach((bar, i) => {
+          const targetW = bar.dataset.barWidth;
+          setTimeout(() => {
+            bar.style.transition = `width ${0.75 + i * 0.1}s cubic-bezier(0.22,0.61,0.36,1)`;
+            bar.style.width = targetW;
+          }, baseBarDelay + i * 90);
+        });
+      });
     });
 
     /* 3. 카운트업 숫자 */
