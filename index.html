@@ -164,6 +164,8 @@
   .s3-vision-sub { font-size:12px; color:var(--gray-mid); line-height:1.6; }
   .s3-values { display:flex; flex-wrap:wrap; gap:6px; }
   .s3-value-tag { background:#e8f4ea; color:var(--green-mid); font-size:12.5px; font-weight:600; padding:5px 10px; border-radius:6px; }
+  .s3-talent-label { font-size:13px; font-weight:700; color:var(--gray-mid); letter-spacing:0.5px; }
+  .s3-talent-tag { background:var(--green-mid); color:#fff; font-size:13px; font-weight:700; padding:4px 12px; border-radius:14px; }
   .s3-bottom { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
   .s3-talent { background:var(--green-deep); border-radius:14px; padding:22px; }
   .s3-talent-title { font-size:12.5px; font-weight:700; letter-spacing:2px; color:var(--green-light); margin-bottom:14px; text-transform:uppercase; }
@@ -507,7 +509,7 @@
   <div class="s1-right">
     <div class="s1-pill anim-ready" data-anim="fadeRight" data-delay="208">
       <div class="s1-pill-num">COMPANY</div>
-      <div class="s1-pill-text">국내 종자 시장 점유율 1위 (약 25%) · 글로벌 TOP13 목표</div>
+      <div class="s1-pill-text">국내 종자 시장 점유율 1위 (약 25%) · 글로벌 TOP 10 목표</div>
     </div>
     <div class="s1-pill anim-ready" data-anim="fadeRight" data-delay="351">
       <div class="s1-pill-num">ISSUE</div>
@@ -585,7 +587,12 @@
         <span class="s3-value-tag">인재중시</span>
         <span class="s3-value-tag">자연친화</span>
       </div>
-      <div style="margin-top:8px;font-size:25px;color:var(--gray-mid)">인재상: <strong>전문성 · 열정 · 인간미</strong></div>
+      <div class="s3-talent-line" style="margin-top:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span class="s3-talent-label">인재상</span>
+        <span class="s3-talent-tag">전문성</span>
+        <span class="s3-talent-tag">열정</span>
+        <span class="s3-talent-tag">인간미</span>
+      </div>
     </div>
   </div>
   <div class="s3-bottom">
@@ -748,9 +755,9 @@
     <div class="s5-card culture anim-ready" data-anim="fadeUp" data-delay="754">
       <div class="s5-card-head"><div class="s5-card-icon">🏢</div><div class="s5-card-title">조직문화</div></div>
       <div class="s5-items">
-        <div class="s5-item">직급 체계: 사원→주임→대리→과장→부장→수석→임원</div>
+        <div class="s5-item">직급 체계: 사원→주임→대리→과장→차장→부장→수석→임원</div>
         <div class="s5-item">PC오프제 도입 → 정시 퇴근 정착</div>
-        <div class="s5-item warn">인사적체 심화: 부장급 이상 약 50%</div>
+        <div class="s5-item warn">인사적체 심화: 부장급 이상 약 20%</div>
         <div class="s5-item warn">강한 회식·음주 문화 (블라인드 지적)</div>
         <div class="s5-item warn">상명하복 문화 → 이의제기 어려운 분위기</div>
       </div>
@@ -919,7 +926,7 @@
     <div class="s8-card blue anim-ready" data-anim="fadeUp" data-delay="728">
       <div class="s8-card-icon">⚡</div>
       <div class="s8-card-title">조직 차원의 영향</div>
-      <div class="s8-card-body">표면적 불만 → 직군 간 갈등 → 협력 저하 → 핵심 연구인력 이탈. 인사적체(부장급 이상 약 50%)와 맞물려 신규 인력 동기 저하 가속. 블라인드 잡플래닛 종합평점 2.7/5 수준.</div>
+      <div class="s8-card-body">표면적 불만 → 직군 간 갈등 → 협력 저하 → 핵심 연구인력 이탈. 인사적체(부장급 이상 약 20%)와 맞물려 신규 인력 동기 저하 가속. 블라인드 잡플래닛 종합평점 2.7/5 수준.</div>
     </div>
   </div>
   <div class="s8-bottom anim-ready" data-anim="fadeUp" data-delay="910">
@@ -1072,7 +1079,7 @@
       </div>
       <div class="s11-item anim-ready" data-anim="fadeUp" data-delay="520">
         <div class="s11-item-title">인사적체 복합 작용</div>
-        <div class="s11-item-body">부장급 이상 약 50% 인사적체가 평가 공정성 불신을 증폭시킴. 승진 = 평가 연동으로 긴장 극대화.</div>
+        <div class="s11-item-body">부장급 이상 약 20% 인사적체가 평가 공정성 불신을 증폭시킴. 승진 = 평가 연동으로 긴장 극대화.</div>
       </div>
     </div>
     <div class="s11-col">
@@ -1104,6 +1111,85 @@
       <strong>타당성 불균형</strong> + <strong>내적 형평성 훼손</strong> + <strong>소통 구조 부재</strong>의 3중 문제가 복합 작용.
       단일 처방으로는 해결 불가 — <strong style="color:var(--gold)">3가지 공정성 축의 동시 접근</strong> 필요.
     </div>
+  </div>
+</div>
+
+<!-- ── S11.5 Lewin 역장이론 ── -->
+<style>
+  #s115 { background:radial-gradient(circle at 50% 30%, #1d4632, var(--green-deep) 62%, #0f2a1d); flex-direction:column; justify-content:center; padding:40px 56px; }
+  .ff-eq-line { position:relative; height:2px; background:linear-gradient(to right, transparent, var(--gold), var(--gold), transparent); margin:0 0 6px; }
+  .ff-eq-badge { display:inline-block; background:var(--gold); color:#1a1206; font-size:12px; font-weight:700; padding:5px 16px; border-radius:16px; letter-spacing:0.5px; }
+  .ff-eq-sub { font-size:11.5px; color:rgba(255,255,255,0.55); margin-top:5px; letter-spacing:0.5px; }
+  .ff-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; margin:14px 0 18px; }
+  .ff-side-title { font-size:12.5px; font-weight:700; letter-spacing:1.5px; margin-bottom:11px; display:flex; align-items:center; gap:7px; }
+  .ff-side-title.drive { color:var(--green-light); justify-content:flex-start; }
+  .ff-side-title.resist { color:var(--red-soft); justify-content:flex-end; }
+  .ff-force { display:flex; align-items:center; gap:9px; background:rgba(255,255,255,0.05); border-radius:9px; padding:9px 12px; margin-bottom:7px; font-size:12px; color:rgba(255,255,255,0.88); line-height:1.4; }
+  .ff-force.drive { border-left:3px solid var(--green-light); }
+  .ff-force.resist { border-right:3px solid var(--red-soft); flex-direction:row-reverse; text-align:right; }
+  .ff-arrow { font-size:15px; font-weight:700; flex-shrink:0; }
+  .ff-force.drive .ff-arrow { color:var(--green-light); }
+  .ff-force.resist .ff-arrow { color:var(--red-soft); }
+  .ff-stages { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:16px; }
+  .ff-stage { background:rgba(255,255,255,0.06); border-radius:11px; padding:13px 15px; border-top:2px solid var(--green-light); }
+  .ff-stage-num { font-size:10.5px; font-weight:700; letter-spacing:1.5px; color:var(--green-light); margin-bottom:5px; }
+  .ff-stage-title { font-size:13px; font-weight:700; color:var(--cream); margin-bottom:6px; }
+  .ff-stage-body { font-size:11px; color:rgba(255,255,255,0.65); line-height:1.55; }
+  .ff-summary { background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.4); border-radius:12px; padding:15px 20px; font-size:12.5px; color:var(--cream); line-height:1.7; }
+  .ff-summary strong { color:var(--gold-light); }
+</style>
+<div class="slide" id="s115">
+  <div style="text-align:center;margin-bottom:14px">
+    <div class="section-label anim-ready" data-anim="fadeLeft" data-delay="0" style="color:var(--green-light)">03 · 변화 동력 진단</div>
+    <div class="slide-heading anim-ready" data-anim="fadeLeft" data-delay="104" style="color:var(--cream)">Lewin 역장이론(Force Field) 분석</div>
+  </div>
+
+  <div class="ff-grid">
+    <div>
+      <div class="ff-side-title drive anim-ready" data-anim="fadeRight" data-delay="200">▶ 추진력 (Driving Forces)</div>
+      <div class="ff-force drive anim-ready" data-anim="fadeRight" data-delay="260"><span class="ff-arrow">→</span><span>MZ세대의 평가·보상 투명성 요구 확대</span></div>
+      <div class="ff-force drive anim-ready" data-anim="fadeRight" data-delay="320"><span class="ff-arrow">→</span><span>핵심 연구인력 이탈 위기 — 유지 필요성</span></div>
+      <div class="ff-force drive anim-ready" data-anim="fadeRight" data-delay="380"><span class="ff-arrow">→</span><span>글로벌 TOP 10 전략 달성 압박</span></div>
+      <div class="ff-force drive anim-ready" data-anim="fadeRight" data-delay="440"><span class="ff-arrow">→</span><span>절차·상호작용 공정성 개선 의지</span></div>
+    </div>
+    <div>
+      <div class="ff-side-title resist anim-ready" data-anim="fadeLeft" data-delay="200">저항력 (Restraining Forces) ◀</div>
+      <div class="ff-force resist anim-ready" data-anim="fadeLeft" data-delay="260"><span class="ff-arrow">←</span><span>본부장 결재 등 기존 절차 관성</span></div>
+      <div class="ff-force resist anim-ready" data-anim="fadeLeft" data-delay="320"><span class="ff-arrow">←</span><span>인사적체(부장급 20%) 기득권 구조</span></div>
+      <div class="ff-force resist anim-ready" data-anim="fadeLeft" data-delay="380"><span class="ff-arrow">←</span><span>평가=승진 연동에 따른 민감도</span></div>
+      <div class="ff-force resist anim-ready" data-anim="fadeLeft" data-delay="440"><span class="ff-arrow">←</span><span>비공개 보상관행 유지 관성</span></div>
+    </div>
+  </div>
+
+  <div class="anim-ready" data-anim="scaleIn" data-delay="520">
+    <div class="ff-eq-line"></div>
+    <div style="text-align:center;margin-bottom:18px">
+      <span class="ff-eq-badge">현 평형 상태 (Quasi-stationary Equilibrium)</span>
+      <div class="ff-eq-sub">수용성 위기 · 잡플래닛 2.7 — 추진력과 저항력이 맞서 정체된 현 상태</div>
+    </div>
+  </div>
+
+  <div class="ff-stages">
+    <div class="ff-stage anim-ready" data-anim="fadeUp" data-delay="600">
+      <div class="ff-stage-num">STEP 1 · UNFREEZE</div>
+      <div class="ff-stage-title">해빙</div>
+      <div class="ff-stage-body">평가 결과 공개·간소화, 면담 의무화로 현 상태에 대한 문제의식 형성</div>
+    </div>
+    <div class="ff-stage anim-ready" data-anim="fadeUp" data-delay="680">
+      <div class="ff-stage-num">STEP 2 · CHANGE</div>
+      <div class="ff-stage-title">변화</div>
+      <div class="ff-stage-body">직무평가(Job Evaluation) 도입, 상시 피드백 체계 구축으로 새 방식 이행</div>
+    </div>
+    <div class="ff-stage anim-ready" data-anim="fadeUp" data-delay="760">
+      <div class="ff-stage-num">STEP 3 · REFREEZE</div>
+      <div class="ff-stage-title">재동결</div>
+      <div class="ff-stage-body">개선 제도의 정착·문화화로 새로운 공정성 평형 안정화</div>
+    </div>
+  </div>
+
+  <div class="ff-summary anim-ready" data-anim="fadeUp" data-delay="860">
+    저항력을 억누르기보다 <strong>구성원의 목소리(저항의 원인)를 경청</strong>하고 HR 시스템 전반을 유기적으로 조정하는 것이 핵심.
+    구성원을 <strong>서비스 제공의 대상자</strong>로 인식해 목소리를 듣고 개선할 때, 변화는 일시적 처방이 아닌 <strong>지속가능한 새 평형</strong>으로 자리잡는다.
   </div>
 </div>
 
@@ -1350,7 +1436,7 @@
 <div class="nav">
   <button onclick="changeSlide(-1)">&#8592;</button>
   <div class="nav-dots" id="dots"></div>
-  <div class="slide-counter" id="counter">1 / 14</div>
+  <div class="slide-counter" id="counter">1 / 15</div>
   <button onclick="changeSlide(1)">&#8594;</button>
   <button onclick="toggleFullscreen()" id="fs-btn" title="전체화면">⛶</button>
 </div>
